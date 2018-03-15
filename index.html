@@ -66,7 +66,7 @@
               <dt class="col-sm-4">Name:</dt>
               <dd class="col-sm-8" v-text="partner.title + ' ' + partner.name"></dd>
               <dt class="col-sm-4" v-if="partner.dobDay && partner.dobMonth && partner.dobYear || partner.gender">Status:</dt>
-              <dd class="col-sm-8">
+              <dd class="col-sm-8" v-if="partner.dobDay && partner.dobMonth && partner.dobYear || partner.gender">
                 <span v-if="partner.dobDay && partner.dobMonth && partner.dobYear" v-text="getAge + ' year old'"></span> <span v-text="partner.gender"></span>
               </dd>
               <dt class="col-sm-4" v-if="hasChildren || hasDependents == 'yes' || hasPets == 'yes'">Dependents:</dt>
