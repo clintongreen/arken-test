@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="icon.png">
+
+    <title>Arken Front End Test</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
+    <!-- <link href="css/fontawesome.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/fa-brands.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body class="p-lg-4">
+
+    <header class="container text-center">
+      <div class="p-3">
+        <img class="logo" src="img/arken-logo.svg" alt="Arken logo">
+      </div>
+      <div class="p-3 brand-bg">
+        <h4 class="text-white text-uppercase m-0">About you</h4>
+      </div>
+    </header>
+
+    
+    <section id="app" class="container">
+      <div class="d-lg-flex flex-row border">
+        <div class="profile-info p-lg-4 text-sm">
+          <div class="form-status d-none d-lg-block p-4 text-center">
+            <div class="form-step mx-auto border rounded-circle text-center font-weight-bold">1</div>
+            <h5 class="text-brand mt-2 w-75 mx-auto">Tell us about your family</h5>
+          </div>
+
+          <hr class="my-2 d-none d-lg-block">
+
+          <div class="profile py-4 d-none d-lg-block">
+            <p class="mb-0 font-weight-bold text-uppercase">Your Details</p>
+            <dl class="row">
+              <dt class="col-sm-4">Name:</dt>
+              <dd class="col-sm-8" v-text="profile.name"></dd>
+              <dt class="col-sm-4">Email:</dt>
+              <dd class="col-sm-8" v-text="profile.email"></dd>
+              <dt class="col-sm-4">Status:</dt>
+              <dd class="col-sm-8">
+                <span v-text="profile.age"></span> year old <span v-text="profile.status"></span> <span v-text="profile.gender"></span>
+              </dd>
+              <dt class="col-sm-4">Phone:</dt>
+              <dd class="col-sm-8" v-text="profile.phone"></dd>
+            </dl>
+          </div> <!-- /.profile -->
+
+          <hr class="my-2 d-none d-lg-block" v-if="partner.name">
+
+          <div class="partner py-4 d-none d-lg-block" v-if="partner.name">
+            <p class="mb-0 font-weight-bold text-uppercase">Partner Details</p>
+            <dl class="row">
+              <dt class="col-sm-4">Name:</dt>
+              <dd class="col-sm-8" v-text="partner.title + ' ' + partner.name"></dd>
+              <dt class="col-sm-4" v-if="partner.dobDay && partner.dobMonth && partner.dobYear || partner.gender">Status:</dt>
+              <dd class="col-sm-8">
+                <span v-if="partner.dobDay && partner.dobMonth && partner.dobYear" v-text="getAge + ' year old'"></span> <span v-text="partner.gender"></span>
+              </dd>
+              <dt class="col-sm-4" v-if="hasChildren || hasDependents == 'yes' || hasPets == 'yes'">Dependents:</dt>
+              <dd class="col-sm-8">
+                <span v-if="hasChildren && hasChildren > 1 || hasChildren && hasChildren == 0" v-text="hasChildren + ' children'"></span>
+              <span v-else-if="hasChildren && hasChildren == 1" v-text="hasChildren + ' child'"></span>
+              <span v-if="hasChildren && hasDependents == 'yes'">and</span>
+              <span v-if="hasDependents == 'yes'">Dependents</span>
+              <span v-if="hasChildren && hasPets == 'yes' || hasDependents == 'yes' && hasPets == 'yes'">and</span>
+              <span v-if="hasPets">Pets</span>
+              </dd>
+            </dl>
+          </div> <!-- /.partner -->
+        </div> <!-- /.profile-info -->
+
+        <div class="form-wrap p-lg-4">
+          <div class="form-status pt-4 px-4 d-sm-flex flex-row flex-wrap justify-content-between">
+            <div class="text-brand">1. My Family</div>
+            <div class="text-muted">2. Assets & Liabilities</div>
+            <div class="text-muted">3. Contact Details</div>
+            <div class="text-muted">4. Review & Submit</div>
+          </div>
+
+          <hr class="my-2 mt-4 d-lg-none">
+
+          <form id="form-1" class="p-4">
+            <h5 class="text-uppercase">Partner</h5>
+            <div class="form-group">
+              <label for="">Title</label>
+              <select class="form-control" name="" id="" v-model="partner.title">
+                <option value="">Please choose a title</option>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Ms">Ms</option>
+              </select>
+            </div> <!-- /.form-group -->
+            <div class="form-group">
+              <label for="">Full Name</label>
+              <input type="text" class="form-control" v-model="partner.name" placeholder="Please enter your first, middle and last names">
+            </div> <!-- /.form-group -->
+
+            <div class="form-group">
+              <label for="" class="d-block">Gender</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="male" v-model="partner.gender">
+                <label class="form-check-label" for="inlineRadio1">Male</label>
+              </div> <!-- /.form-check -->
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="female" v-model="partner.gender">
+                <label class="form-check-label" for="inlineRadio2">Female</label>
+              </div> <!-- /.form-check -->
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="other" v-model="partner.gender">
+                <label class="form-check-label" for="inlineRadio3">Other</label>
+              </div> <!-- /.form-check -->
+            </div> <!-- /.form-group -->
+
+            <div class="form-row">
+              <label for="" class="col-12">Date of birth</label>
+              <div class="col-sm-4 mb-2">
+                <select class="form-control" name="" id="dob-day" v-model="partner.dobDay">
+                  <option value="">Day</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+              </div> <!-- /.col -->
+              <div class="col-sm-4 mb-2">
+                <select class="form-control" name="" id="dob-month" v-model="partner.dobMonth">
+                  <option value="">Month</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                </select>
+              </div> <!-- /.col -->
+              <div class="col-sm-4">
+                <select class="form-control" name="" id="dob-year" v-model="partner.dobYear">
+                  <option value="">Year</option>
+                  <option value="1900">1900</option>
+                  <option value="1901">1901</option>
+                  <option value="1902">1902</option>
+                </select>
+              </div> <!-- /.col -->
+            </div> <!-- /.form-row -->
+
+            <h5 class="mt-4 pt-4 text-uppercase">Children</h5>
+            <div class="form-group">
+              <label for="">Do you or your Partner have any children? If so how many?</label>
+              <select class="form-control" name="" id="" v-model="hasChildren">
+                <option value="">Please choose a number</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div> <!-- /.form-group -->
+
+            <h5 class="mt-4 pt-4 text-uppercase">Dependents</h5>
+            <div class="form-group">
+              <label for="" class="d-block">Do you have any other dependents?</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes" v-model="hasDependents">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+              </div> <!-- /.form-check -->
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no" v-model="hasDependents">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+              </div> <!-- /.form-check -->
+            </div> <!-- /.form-group -->
+            <div class="form-group">
+              <label for="" class="d-block">Do you have any Pets?</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes" v-model="hasPets">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+              </div> <!-- /.form-check -->
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no" v-model="hasPets">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+              </div> <!-- /.form-check -->
+            </div> <!-- /.form-group -->
+
+            <div class="form-group text-right pt-4">
+              <button type="button" class="btn brand-bg text-white">Next</button>
+            </div> <!-- /.form-group -->
+          </form> <!-- /form -->
+        </div> <!-- /.form-wrap -->
+
+      </div> <!-- /flex -->
+    </section>
+
+    <footer class="p-4 text-center">
+      <script type="text/javascript"> document.write(new Date().getFullYear())</script>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.js"></script>
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          profile: {
+            age: '29',
+            email: 'john.black@email.com',
+            gender: 'male',
+            name: 'Jonathon Black',
+            phone: '+64 21 123 4567',
+            status: 'married',
+          },
+          partner: {
+            dobDay: '',
+            dobMonth: '',
+            dobYear: '',
+            gender: '',
+            name: '',
+            title: '',
+          },
+          hasChildren: '',
+          hasDependents: '',
+          hasPets: '',
+        },
+        computed: {
+          getAge: function(){
+            const birthday = +new Date(this.partner.dobYear + '/' + this.partner.dobMonth + '/' + this.partner.dobDay);
+            return ~~((Date.now() - birthday) / (31557600000));
+          },
+        }
+      })
+    </script>
+
+  </body>
+</html>

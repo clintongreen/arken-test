@@ -1,0 +1,50 @@
+/* vars */
+/* General */
+body {
+  font-family: 'Roboto', sans-serif; }
+
+/* Layout */
+.logo {
+  height: 40px; }
+
+@media (min-width: 992px) {
+  .profile-info {
+    width: 30%;
+    border-right: 1px solid #dee2e6; }
+  .form-wrap {
+    width: 70%; } }
+
+.form-step {
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  color: #ff6600;
+  border-color: #ff6600 !important;
+  border-width: 2px !important; }
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: .03rem;
+  font-family: 'Roboto Condensed', sans-serif; }
+
+.text-sm {
+  font-size: .9rem; }
+
+.text-brand {
+  color: #ff6600; }
+
+/* Header */
+.brand-bg {
+  background-color: #ff6600; }
+
+/* Forms */
+.btn {
+  width: 50%; }
+
+.btn.brand-bg:hover {
+  background-color: #e65c00;
+  transition: all .5s; }
+
+@media (min-width: 992px) {
+  .btn {
+    width: 30%; } }

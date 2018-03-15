@@ -1,0 +1,5 @@
+# Ignore these files and folders
+node_modules/
+scss/
+package.json
+.DS_store
