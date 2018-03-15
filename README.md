@@ -7,6 +7,7 @@ Front End Technical &amp; UX test
 * Profile & Partner info are hidden on mobile due to time constraints
 * Validation is ignored due to time contraints
 * UI is ignored due to time constraints
+* Minimal design has been done due to time constraints
 * Form does not proceed to next step due to time constraints
 
 # Demo
