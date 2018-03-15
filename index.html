@@ -277,7 +277,7 @@
           getAge: function(){
             const birthday = +new Date(this.partner.dobYear + '/' + this.partner.dobMonth + '/' + this.partner.dobDay);
             return ~~((Date.now() - birthday) / (31557600000));
-          }
+          },
         }
       })
     </script>
