@@ -10,7 +10,7 @@ body {
 @media (min-width: 992px) {
   .profile-info {
     width: 30%;
-    border-right: 1px solid #dee2e6; }
+    box-shadow: 6px 0 6px -6px #999; }
   .form-wrap {
     width: 70%; } }
 
