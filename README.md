@@ -11,6 +11,8 @@ Front End Technical &amp; UX test
 * Form does not proceed to next step due to time constraints
 * Form uses years in multiples of 10 to cut down on code for this test
 * Form removes the Age input and determines the age from the date of birth
+* Extensive testing was not perform due to time constraints
+* Age was not converted for IOS date format issue
 
 # Demo
 Please view a demo at http://hoonzee.com/arken-test/
