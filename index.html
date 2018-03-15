@@ -76,7 +76,7 @@
               <span v-if="hasChildren && hasDependents == 'yes'">and</span>
               <span v-if="hasDependents == 'yes'">Dependents</span>
               <span v-if="hasChildren && hasPets == 'yes' || hasDependents == 'yes' && hasPets == 'yes'">and</span>
-              <span v-if="hasPets">Pets</span>
+              <span v-if="hasPets == 'yes'">Pets</span>
               </dd>
             </dl>
           </div> <!-- /.partner -->
