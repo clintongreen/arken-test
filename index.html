@@ -91,7 +91,7 @@
           </div>
 
           <hr class="my-2 mt-4 d-lg-none">
-
+<span v-if="partner.dobDay && partner.dobMonth && partner.dobYear" v-text="getAge + ' year old'"></span>
           <form id="form-1" class="p-4">
             <h5 class="text-uppercase">Partner</h5>
             <div class="form-group">
@@ -278,6 +278,16 @@
           //   const birthday = +new Date(this.partner.dobYear + '/' + this.partner.dobMonth + '/' + this.partner.dobDay);
           //   return ~~((Date.now() - birthday) / (31557600000));
           // },
+          // getAge: function getAge() {
+          //   var today = new Date();
+          //   var birthDate = new Date(this.partner.dobYear + '/' + this.partner.dobMonth + '/' + this.partner.dobDay);
+          //   var age = today.getFullYear() - birthDate.getFullYear();
+          //   var m = today.getMonth() - birthDate.getMonth();
+          //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          //       age--;
+          //   }
+          //   return age;
+          // },
           getAge: function getAge() {
             var today = new Date();
             var birthDate = new Date(this.partner.dobYear + '/' + this.partner.dobMonth + '/' + this.partner.dobDay);
@@ -287,7 +297,7 @@
                 age--;
             }
             return age;
-        }
+          }
         }
       })
     </script>
