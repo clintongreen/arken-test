@@ -11,4 +11,4 @@ Front End Technical &amp; UX test
 * Form does not proceed to next step due to time constraints
 
 # Demo
-Please view a demo at http://hoonzee.com/arkentest/
+Please view a demo at http://hoonzee.com/arken-test/
